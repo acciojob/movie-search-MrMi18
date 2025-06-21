@@ -37,13 +37,13 @@ const App = () => {
           Search
         </button>
       </form>
-      {isLoading && <p>Loading....</p>}
+
       <ul>
 
       
       {
         
-        data.length > 0 && !isLoading &&
+         data.length===0 ? <p className="error">{error || "Invalid movie name. Please try again."}</p> :
         data.map((m )=> {
           return <li key={m.imdbID}>
             <h3>{m.Title + "( " + m.Year + " )"}</h3>
@@ -53,7 +53,7 @@ const App = () => {
         } )  
       }
       </ul>
-      {error && <p className="error">{error}</p>}
+      
     </div>
   )
 }
