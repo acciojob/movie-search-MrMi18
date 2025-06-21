@@ -7,7 +7,8 @@ const App = () => {
   const [data,setData] = useState([]);
   const [isLoading,setIsLoading] = useState(false);
   const[error,setError] = useState(null);
-  const movieSearch =  () =>{
+  const handleSubmit =  (event) =>{
+     event.preventDefault();
     setIsLoading(true);
      setData([])
       setError(null)
@@ -29,11 +30,13 @@ const App = () => {
   }
   return (
     <div>
-      <div>
-        <h4>Movie Search</h4>
-        <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
-        <button onClick={movieSearch}>Search</button>
-      </div>
+      <h3>Movie Search</h3>
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={query} onChange={(e)=>setQuery(e.target.value)} />
+        <button type="submit" onClick={handleSubmit}>
+          Search
+        </button>
+      </form>
       {isLoading && <p>Loading....</p>}
       <ul>
 
@@ -50,9 +53,10 @@ const App = () => {
         } )  
       }
       </ul>
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
     </div>
   )
 }
 
 export default App
+
